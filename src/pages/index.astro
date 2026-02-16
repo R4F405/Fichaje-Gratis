@@ -1,13 +1,15 @@
 ---
+// src/pages/index.astro
 import '../styles/global.css';
 
-// Importamos nuestros nuevos componentes de la carpeta components/
 import LeadForm from '../components/LeadForm.astro';
 import Features from '../components/Features.astro';
 import SocialProof from '../components/SocialProof.astro';
+import StickyScroll from '../components/StickyScroll.astro';
 
 const heroData = {
-  title: "Controla el horario de tu equipo sin complicaciones",
+  title: "Controla el horario de tu equipo",
+  titleHighlight: "sin complicaciones", // Lo separamos para darle un estilo especial
   subtitle: "La solución de fichaje digital integrada en Rapidgest. Registra jornadas, gestiona ausencias y cumple la normativa desde cualquier dispositivo en segundos.",
   ctaText: "Solicitar demo",
   ctaLink: "#demo", 
@@ -22,42 +24,76 @@ const heroData = {
     <meta name="viewport" content="width=device-width" />
     <title>{heroData.appName} | Control Horario</title>
   </head>
-  <body class="bg-white text-brand-dark font-sans antialiased">
+  <body class="bg-slate-50 text-brand-dark font-sans antialiased overflow-x-hidden relative">
     
-    <header class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="font-bold text-2xl text-brand-blue tracking-tight">
-        {heroData.appName}<span class="text-brand-green">.</span>
+    <div class="absolute inset-0 z-[-2] h-screen w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+    
+    <div class="absolute top-0 right-0 -z-10 transform-gpu overflow-hidden blur-3xl opacity-30" aria-hidden="true">
+      <div class="aspect-[1108/632] w-[69.25rem] bg-gradient-to-r from-brand-blue to-brand-green" style="clip-path: polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)"></div>
+    </div>
+    <div class="absolute -top-24 -left-40 -z-10 transform-gpu overflow-hidden blur-3xl opacity-20" aria-hidden="true">
+      <div class="aspect-[1108/632] w-[40rem] bg-brand-blue rounded-full"></div>
+    </div>
+
+    <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-slate-50/70 border-b border-slate-200/50">
+      <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="font-extrabold text-2xl text-brand-blue tracking-tighter">
+          {heroData.appName}<span class="text-brand-green">.</span>
+        </div>
       </div>
     </header>
 
     <main>
-      <section class="container mx-auto px-6 pt-20 pb-16 text-center md:pt-32 md:pb-24">
-        <div class="inline-block py-1 px-4 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-bold mb-6 border border-brand-blue/20">
+      <section class="container mx-auto px-6 pt-24 pb-16 text-center md:pt-36 md:pb-24 relative">
+        
+        <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white border border-slate-200 shadow-sm text-sm font-semibold mb-8 text-brand-dark/80 transition-all hover:border-brand-blue/30 cursor-default">
+          <span class="flex h-2 w-2 rounded-full bg-brand-green"></span>
           Nuevo módulo de control horario
         </div>
-        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-brand-dark mb-6 max-w-4xl mx-auto leading-tight">
-          {heroData.title}
+
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter text-slate-900 mb-6 max-w-5xl mx-auto leading-[1.1]">
+          {heroData.title} <br class="hidden md:block" />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-blue-hover">
+            {heroData.titleHighlight}
+          </span>
         </h1>
-        <p class="text-lg md:text-xl text-brand-dark/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+
+        <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
           {heroData.subtitle}
         </p>
-        <div class="flex justify-center gap-4">
-          <a href={heroData.ctaLink} class="bg-brand-blue hover:bg-brand-blue-hover text-white font-semibold py-3 px-8 rounded-lg shadow-lg shadow-brand-blue/30 transition-all duration-200 transform hover:-translate-y-1">
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+          <a href={heroData.ctaLink} class="group relative inline-flex items-center justify-center gap-2 bg-brand-dark hover:bg-slate-800 text-white font-semibold py-3.5 px-8 rounded-xl transition-all duration-200 shadow-[0_1px_2px_rgba(0,0,0,0.1),0_8px_16px_rgba(0,0,0,0.1)] hover:-translate-y-0.5">
             {heroData.ctaText}
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+          <a href="#como-funciona" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-brand-dark font-semibold py-3.5 px-8 rounded-xl transition-all duration-200 border border-slate-200 shadow-sm hover:border-slate-300">
+            Ver cómo funciona
           </a>
         </div>
 
-        <div class="mt-16 max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl border border-brand-light overflow-hidden aspect-video flex items-center justify-center bg-slate-50 relative group">
-             <div class="absolute inset-0 bg-gradient-to-tr from-brand-blue/5 to-brand-green/5"></div>
-             <p class="text-brand-dark/50 font-medium z-10">[ Aquí irá la imagen o captura de pantalla de la app Rapidgest ]</p>
+        <div class="mt-20 max-w-6xl mx-auto relative group perspective-1000">
+             <div class="absolute -inset-1 bg-gradient-to-r from-brand-blue to-brand-green rounded-[2rem] blur opacity-20 group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
+             
+             <div class="relative bg-white rounded-3xl ring-1 ring-slate-200/50 shadow-2xl overflow-hidden aspect-[16/9] flex items-center justify-center transform transition-transform duration-500 hover:scale-[1.01]">
+                 
+                 <div class="absolute top-0 w-full h-12 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200 flex items-center px-4 gap-2 z-20">
+                    <div class="w-3 h-3 rounded-full bg-slate-300"></div>
+                    <div class="w-3 h-3 rounded-full bg-slate-300"></div>
+                    <div class="w-3 h-3 rounded-full bg-slate-300"></div>
+                 </div>
+
+                 <p class="text-slate-400 font-medium z-10">[ Captura de Interfaz Limpia de Rapidgest ]</p>
+             </div>
         </div>
       </section>
 
-      <LeadForm />
-
-	  <SocialProof />
-
-      <Features />
+      <div class="relative z-10 bg-slate-50">
+        <LeadForm />
+        <SocialProof />
+        <StickyScroll />
+        <Features />
+      </div>
       
     </main>
 
