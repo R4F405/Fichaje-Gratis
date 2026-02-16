@@ -1,0 +1,1485 @@
+---
+// src/components/InteractiveDemo.astro
+// Simulación de dashboard tipo Rapidgest con sidebar, gráficos y fichaje interactivo
+---
+
+<div class="demo-dashboard">
+  <!-- Sidebar -->
+  <aside class="demo-sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">R</div>
+      <div class="brand-info">
+        <span class="brand-name">Rapidgest</span>
+        <span class="brand-role">Demo</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-item active" role="button">
+        <svg
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"
+          ></path></svg
+        >
+        Panel de Control
+      </span>
+      <span class="nav-item" role="button">
+        <svg
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+          ></path></svg
+        >
+        Clientes
+      </span>
+
+      <div class="nav-group">
+        <span class="nav-group-label" role="button">
+          <svg
+            width="14"
+            height="14"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg
+          >
+          Horarios
+          <svg
+            class="chevron"
+            width="12"
+            height="12"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path></svg
+          >
+        </span>
+        <div class="nav-subgroup">
+          <span class="nav-item sub active" role="button">
+            <span class="sub-dot"></span>
+            Panel de Horarios
+          </span>
+          <span class="nav-item sub" role="button">
+            <span class="sub-dot"></span>
+            Hojas de Horas
+          </span>
+          <span class="nav-item sub" role="button">
+            <span class="sub-dot"></span>
+            Proyectos
+          </span>
+          <span class="nav-item sub" role="button">
+            <span class="sub-dot"></span>
+            Actividades
+          </span>
+        </div>
+      </div>
+
+      <span class="nav-item" role="button">
+        <svg
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          ></path></svg
+        >
+        Informes
+      </span>
+      <span class="nav-item" role="button">
+        <svg
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+          ></path><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg
+        >
+        Configuración
+      </span>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="demo-main">
+    <!-- Top Bar -->
+    <header class="demo-topbar">
+      <div class="topbar-left">
+        <h1 class="topbar-title">Panel de Horarios</h1>
+        <span class="topbar-breadcrumb"
+          >Inicio › Horarios › Panel de Horarios</span
+        >
+      </div>
+      <div class="topbar-right">
+        <!-- STATE: Initial - Show Entrar + Reanudar -->
+        <div class="fichaje-topbar" id="fichaje-initial">
+          <button
+            id="btn-play"
+            class="btn-top btn-play"
+            title="Entrar con detalles"
+          >
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                clip-rule="evenodd"></path></svg
+            >
+            Entrar
+          </button>
+          <button
+            id="btn-quick"
+            class="btn-top btn-quick"
+            title="Reanudar fichaje rápido"
+          >
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              ></path></svg
+            >
+            Reanudar
+          </button>
+        </div>
+
+        <!-- STATE: Working - Timer + action buttons -->
+        <div
+          class="fichaje-topbar fichaje-active"
+          id="fichaje-working"
+          style="display:none;"
+        >
+          <div class="timer-display" id="stopwatch">00:00:00</div>
+          <button
+            id="btn-change"
+            class="btn-circle btn-change"
+            title="Cambiar cliente/proyecto"
+          >
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              ></path></svg
+            >
+          </button>
+          <button id="btn-break" class="btn-circle btn-break" title="Descanso">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"
+              ><path
+                d="M2 4.5A2.5 2.5 0 014.5 2h11A2.5 2.5 0 0118 4.5v1.757a4.5 4.5 0 01-3.12 4.29A3.501 3.501 0 0111.5 14H9v1.5a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5V14H4.5A2.5 2.5 0 012 11.5v-7zm3 7a.5.5 0 00.5.5H8v-1.5A1.5 1.5 0 019.5 9h2a1.5 1.5 0 011.415 1h.585a2.5 2.5 0 002.5-2.5V4.5a.5.5 0 00-.5-.5h-11a.5.5 0 00-.5.5v7z"
+              ></path></svg
+            >
+          </button>
+          <button
+            id="btn-stop"
+            class="btn-circle btn-stop"
+            title="Salir / Finalizar"
+          >
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"
+              ><path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path></svg
+            >
+          </button>
+          <div class="topbar-avatar-sm">CM</div>
+        </div>
+
+        <!-- STATE: Paused - Timer + Resume + Stop -->
+        <div
+          class="fichaje-topbar fichaje-active"
+          id="fichaje-paused"
+          style="display:none;"
+        >
+          <div class="timer-display paused" id="stopwatch-paused">00:00:00</div>
+          <span class="pause-label">En pausa</span>
+          <button id="btn-resume" class="btn-top btn-play" title="Reanudar">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"
+              ><path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                clip-rule="evenodd"></path></svg
+            >
+            Reanudar
+          </button>
+          <button
+            id="btn-stop2"
+            class="btn-circle btn-stop"
+            title="Salir / Finalizar"
+          >
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"
+              ><path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path></svg
+            >
+          </button>
+        </div>
+
+        <div class="topbar-avatar" id="topbar-avatar-initial">CM</div>
+      </div>
+    </header>
+
+    <!-- Modal: Confirmar Entrada -->
+    <div class="modal-overlay" id="modal-overlay" style="display:none;">
+      <div class="modal-card">
+        <h2 class="modal-title">Confirmar Entrada</h2>
+        <div class="modal-form">
+          <div class="form-row two-cols">
+            <div class="form-group">
+              <label class="form-label"
+                >Hora <span class="required">*</span></label
+              >
+              <input type="text" class="form-input" id="form-hora" readonly />
+            </div>
+            <div class="form-group">
+              <label class="form-label"
+                >Fecha <span class="required">*</span></label
+              >
+              <input type="text" class="form-input" id="form-fecha" readonly />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Cliente</label>
+            <select class="form-input form-select-native">
+              <option value="" disabled selected>Cliente</option>
+              <option>Grupo Nevara S.L.</option>
+              <option>Textiles del Mediterráneo</option>
+              <option>AutoParts Ibérica</option>
+              <option>Farmacia Central Plus</option>
+              <option>Hotel Marina Bay</option>
+              <option>Logística Express 24h</option>
+            </select>
+          </div>
+          <div class="form-row two-cols">
+            <div class="form-group">
+              <label class="form-label">Proyecto</label>
+              <select class="form-input form-select-native">
+                <option value="" disabled selected>Proyecto</option>
+                <option>App Delivery</option>
+                <option>Portal de Reservas</option>
+                <option>ERP Logístico</option>
+                <option>Tienda Online</option>
+                <option>Panel Analíticas</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Actividad</label>
+              <select class="form-input form-select-native">
+                <option value="" disabled selected>Actividad</option>
+                <option>Diseño UX</option>
+                <option>Programación</option>
+                <option>Testing QA</option>
+                <option>Soporte Técnico</option>
+                <option>Documentación</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Localización</label>
+            <select class="form-input form-select-native">
+              <option value="" disabled selected>Localización</option>
+              <option>Oficina Central</option>
+              <option>Teletrabajo</option>
+              <option>Sede Norte</option>
+              <option>Cliente externo</option>
+              <option>Coworking Hub</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nota</label>
+            <textarea class="form-textarea" placeholder="Nota" rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button id="modal-cancel" class="btn-modal btn-cancel"
+            >Cancelar</button
+          >
+          <button id="modal-save" class="btn-modal btn-save">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="demo-content">
+      <!-- Grid: Chart + Who's In/Out -->
+      <div class="dashboard-grid">
+        <!-- Bar Chart Card -->
+        <div class="chart-card chart-card-wide">
+          <div class="chart-card-header">
+            <h3 class="chart-card-title">Horas Registradas</h3>
+            <button class="chart-btn">Ir a Hojas de Horas</button>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-item"
+              ><span class="legend-dot" style="background:#109a9d"></span>Horas
+              Trabajadas <strong>454h 0m</strong></span
+            >
+            <span class="legend-item"
+              ><span class="legend-dot" style="background:#f59e0b"
+              ></span>Descansos <strong>12h 41m</strong></span
+            >
+            <span class="legend-item"
+              ><span class="legend-dot" style="background:#ef4444"></span>Horas
+              Extras <strong>47h 36m</strong></span
+            >
+          </div>
+          <div class="bar-chart-container">
+            <svg
+              class="bar-chart"
+              viewBox="0 0 520 140"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <text x="2" y="14" class="chart-label">50h</text>
+              <text x="2" y="44" class="chart-label">35h</text>
+              <text x="2" y="74" class="chart-label">20h</text>
+              <text x="2" y="104" class="chart-label">5h</text>
+              <text x="2" y="134" class="chart-label">0h</text>
+              <line x1="30" y1="10" x2="515" y2="10" class="grid-line"></line>
+              <line x1="30" y1="40" x2="515" y2="40" class="grid-line"></line>
+              <line x1="30" y1="70" x2="515" y2="70" class="grid-line"></line>
+              <line x1="30" y1="100" x2="515" y2="100" class="grid-line"></line>
+              <line x1="30" y1="130" x2="515" y2="130" class="grid-line"></line>
+              <!-- Ene -->
+              <rect x="38" y="40" width="10" height="90" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="50" y="95" width="10" height="35" rx="2" fill="#f59e0b"
+              ></rect>
+              <rect x="62" y="110" width="10" height="20" rx="2" fill="#ef4444"
+              ></rect>
+              <text x="52" y="140" class="chart-label-x">E</text>
+              <!-- Feb -->
+              <rect x="80" y="25" width="10" height="105" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="92" y="90" width="10" height="40" rx="2" fill="#f59e0b"
+              ></rect>
+              <rect x="104" y="100" width="10" height="30" rx="2" fill="#ef4444"
+              ></rect>
+              <text x="94" y="140" class="chart-label-x">F</text>
+              <!-- Mar -->
+              <rect x="122" y="15" width="10" height="115" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="134" y="85" width="10" height="45" rx="2" fill="#f59e0b"
+              ></rect>
+              <rect x="146" y="95" width="10" height="35" rx="2" fill="#ef4444"
+              ></rect>
+              <text x="136" y="140" class="chart-label-x">M</text>
+              <!-- Abr -->
+              <rect x="164" y="35" width="10" height="95" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="176" y="100" width="10" height="30" rx="2" fill="#f59e0b"
+              ></rect>
+              <text x="172" y="140" class="chart-label-x">A</text>
+              <!-- May -->
+              <rect x="206" y="20" width="10" height="110" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="218" y="80" width="10" height="50" rx="2" fill="#f59e0b"
+              ></rect>
+              <rect x="230" y="90" width="10" height="40" rx="2" fill="#ef4444"
+              ></rect>
+              <text x="220" y="140" class="chart-label-x">M</text>
+              <!-- Jun -->
+              <rect x="248" y="30" width="10" height="100" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="260" y="92" width="10" height="38" rx="2" fill="#f59e0b"
+              ></rect>
+              <rect x="272" y="105" width="10" height="25" rx="2" fill="#ef4444"
+              ></rect>
+              <text x="262" y="140" class="chart-label-x">J</text>
+              <!-- Jul -->
+              <rect x="290" y="22" width="10" height="108" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="302" y="88" width="10" height="42" rx="2" fill="#f59e0b"
+              ></rect>
+              <rect x="314" y="98" width="10" height="32" rx="2" fill="#ef4444"
+              ></rect>
+              <text x="304" y="140" class="chart-label-x">J</text>
+              <!-- Ago -->
+              <rect x="332" y="50" width="10" height="80" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="344" y="100" width="10" height="30" rx="2" fill="#f59e0b"
+              ></rect>
+              <text x="340" y="140" class="chart-label-x">A</text>
+              <!-- Sep -->
+              <rect x="374" y="28" width="10" height="102" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="386" y="85" width="10" height="45" rx="2" fill="#f59e0b"
+              ></rect>
+              <rect x="398" y="100" width="10" height="30" rx="2" fill="#ef4444"
+              ></rect>
+              <text x="388" y="140" class="chart-label-x">S</text>
+              <!-- Oct -->
+              <rect x="416" y="18" width="10" height="112" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="428" y="82" width="10" height="48" rx="2" fill="#f59e0b"
+              ></rect>
+              <rect x="440" y="95" width="10" height="35" rx="2" fill="#ef4444"
+              ></rect>
+              <text x="430" y="140" class="chart-label-x">O</text>
+              <!-- Nov -->
+              <rect x="458" y="32" width="10" height="98" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="470" y="90" width="10" height="40" rx="2" fill="#f59e0b"
+              ></rect>
+              <text x="466" y="140" class="chart-label-x">N</text>
+              <!-- Dic -->
+              <rect x="494" y="45" width="10" height="85" rx="2" fill="#109a9d"
+              ></rect>
+              <rect x="506" y="105" width="10" height="25" rx="2" fill="#f59e0b"
+              ></rect>
+              <text x="502" y="140" class="chart-label-x">D</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Who's In/Out Card -->
+        <div class="chart-card whois-card">
+          <h3 class="chart-card-title">¿Quién está dentro/fuera?</h3>
+          <p class="whois-subtitle">10 miembros</p>
+          <div class="whois-stats">
+            <div class="whois-stat">
+              <span class="whois-number green">3</span>
+              <span class="whois-label">DENTRO</span>
+            </div>
+            <div class="whois-stat">
+              <span class="whois-number amber">2</span>
+              <span class="whois-label">DESCANSO</span>
+            </div>
+            <div class="whois-stat">
+              <span class="whois-number slate">5</span>
+              <span class="whois-label">FUERA</span>
+            </div>
+          </div>
+          <div class="whois-bar">
+            <div class="whois-bar-seg green" style="width:30%"></div>
+            <div class="whois-bar-seg amber" style="width:20%"></div>
+            <div class="whois-bar-seg slate" style="width:50%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donut Charts Row -->
+      <div class="dashboard-grid donuts-row">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3 class="chart-card-title">Actividades</h3>
+            <button class="chart-btn">Ir a Actividades</button>
+          </div>
+          <div class="donut-wrapper">
+            <svg viewBox="0 0 120 120" class="donut-chart">
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#e2e8f0"
+                stroke-width="18"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#109a9d"
+                stroke-width="18"
+                stroke-dasharray="115 174"
+                stroke-dashoffset="0"
+                class="donut-seg"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#0e8588"
+                stroke-width="18"
+                stroke-dasharray="58 231"
+                stroke-dashoffset="-115"
+                class="donut-seg"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#f59e0b"
+                stroke-width="18"
+                stroke-dasharray="46 243"
+                stroke-dashoffset="-173"
+                class="donut-seg"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#ef4444"
+                stroke-width="18"
+                stroke-dasharray="29 260"
+                stroke-dashoffset="-219"
+                class="donut-seg"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#8b5cf6"
+                stroke-width="18"
+                stroke-dasharray="20 269"
+                stroke-dashoffset="-248"
+                class="donut-seg"></circle>
+            </svg>
+            <div class="donut-legend">
+              <span
+                ><span class="legend-dot" style="background:#109a9d"
+                ></span>Diseño UX</span
+              >
+              <span
+                ><span class="legend-dot" style="background:#0e8588"
+                ></span>Programación</span
+              >
+              <span
+                ><span class="legend-dot" style="background:#f59e0b"
+                ></span>Testing QA</span
+              >
+              <span
+                ><span class="legend-dot" style="background:#ef4444"
+                ></span>Soporte Técnico</span
+              >
+              <span
+                ><span class="legend-dot" style="background:#8b5cf6"
+                ></span>Documentación</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3 class="chart-card-title">Proyectos</h3>
+            <button class="chart-btn">Ir a Proyectos</button>
+          </div>
+          <div class="donut-wrapper">
+            <svg viewBox="0 0 120 120" class="donut-chart">
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#e2e8f0"
+                stroke-width="18"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#64748b"
+                stroke-width="18"
+                stroke-dasharray="100 189"
+                stroke-dashoffset="0"
+                class="donut-seg"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#109a9d"
+                stroke-width="18"
+                stroke-dasharray="72 217"
+                stroke-dashoffset="-100"
+                class="donut-seg"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#0e8588"
+                stroke-width="18"
+                stroke-dasharray="50 239"
+                stroke-dashoffset="-172"
+                class="donut-seg"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#f59e0b"
+                stroke-width="18"
+                stroke-dasharray="35 254"
+                stroke-dashoffset="-222"
+                class="donut-seg"></circle>
+              <circle
+                cx="60"
+                cy="60"
+                r="46"
+                fill="none"
+                stroke="#8b5cf6"
+                stroke-width="18"
+                stroke-dasharray="22 267"
+                stroke-dashoffset="-257"
+                class="donut-seg"></circle>
+            </svg>
+            <div class="donut-legend">
+              <span
+                ><span class="legend-dot" style="background:#64748b"></span>App
+                Delivery</span
+              >
+              <span
+                ><span class="legend-dot" style="background:#109a9d"
+                ></span>Portal de Reservas</span
+              >
+              <span
+                ><span class="legend-dot" style="background:#0e8588"></span>ERP
+                Logístico</span
+              >
+              <span
+                ><span class="legend-dot" style="background:#f59e0b"
+                ></span>Tienda Online</span
+              >
+              <span
+                ><span class="legend-dot" style="background:#8b5cf6"
+                ></span>Panel Analíticas</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<style>
+  /* ===== Layout ===== */
+  .demo-dashboard {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: #f8fafc;
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    color: #334155;
+    font-size: 12px;
+    overflow: hidden;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+  }
+
+  /* ===== Sidebar ===== */
+  .demo-sidebar {
+    width: 180px;
+    min-width: 180px;
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 8px;
+    overflow-y: auto;
+  }
+  @media (max-width: 640px) {
+    .demo-sidebar {
+      display: none;
+    }
+  }
+  .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 12px;
+  }
+  .brand-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #109a9d, #0e8588);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .brand-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .brand-name {
+    font-weight: 700;
+    font-size: 12px;
+    color: #0f172a;
+  }
+  .brand-role {
+    font-size: 9px;
+    color: #94a3b8;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    color: #64748b;
+    font-weight: 500;
+    font-size: 11px;
+    text-decoration: none;
+    transition: all 0.15s;
+    cursor: pointer;
+    user-select: none;
+  }
+  .nav-item:hover {
+    background: #f1f5f9;
+    color: #334155;
+  }
+  .nav-item.active {
+    background: rgba(16, 154, 157, 0.1);
+    color: #109a9d;
+    font-weight: 600;
+  }
+
+  .nav-group {
+    margin-top: 2px;
+  }
+  .nav-group-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    color: #109a9d;
+    font-weight: 600;
+    font-size: 11px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .nav-group-label .chevron {
+    margin-left: auto;
+  }
+
+  .nav-subgroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding-left: 12px;
+    margin-top: 2px;
+  }
+  .nav-item.sub {
+    padding: 5px 10px;
+    font-size: 10.5px;
+    gap: 6px;
+  }
+  .nav-item.sub.active {
+    background: rgba(16, 154, 157, 0.08);
+    color: #109a9d;
+    font-weight: 600;
+  }
+  .sub-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    flex-shrink: 0;
+  }
+  .nav-item.sub.active .sub-dot {
+    background: #109a9d;
+  }
+
+  /* ===== Main ===== */
+  .demo-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    min-width: 0;
+    position: relative;
+  }
+
+  /* ===== Top Bar ===== */
+  .demo-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    min-height: 46px;
+    flex-shrink: 0;
+    gap: 12px;
+  }
+  .topbar-left {
+    flex-shrink: 0;
+  }
+  .topbar-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+  .topbar-breadcrumb {
+    font-size: 9px;
+    color: #94a3b8;
+  }
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+  }
+  .topbar-avatar,
+  .topbar-avatar-sm {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #109a9d, #0e8588);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .topbar-avatar-sm {
+    width: 26px;
+    height: 26px;
+    font-size: 9px;
+  }
+
+  /* ===== Fichaje Top Bar States ===== */
+  .fichaje-topbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-top {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 11px;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .btn-top:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+  }
+  .btn-play {
+    background: linear-gradient(135deg, #109a9d, #0e8588);
+    box-shadow: 0 2px 8px rgba(16, 154, 157, 0.3);
+  }
+  .btn-quick {
+    background: linear-gradient(135deg, #0e8588, #0c7275);
+    box-shadow: 0 2px 8px rgba(14, 133, 136, 0.3);
+  }
+
+  /* Timer display */
+  .timer-display {
+    font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    min-width: 80px;
+  }
+  .timer-display.paused {
+    color: #f59e0b;
+  }
+
+  .pause-label {
+    font-size: 9px;
+    font-weight: 600;
+    color: #f59e0b;
+    background: #fef3c7;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  /* Circle action buttons (working state) */
+  .btn-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .btn-circle:hover {
+    transform: scale(1.1);
+  }
+  .btn-change {
+    background: #22c55e;
+    box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+  }
+  .btn-break {
+    background: #f59e0b;
+    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
+  }
+  .btn-stop {
+    background: #ef4444;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+  }
+
+  /* ===== Modal ===== */
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+    animation: modalIn 0.25s ease-out;
+  }
+  @keyframes modalIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .modal-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 18px;
+  }
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .form-row {
+    display: flex;
+    gap: 12px;
+  }
+  .form-row.two-cols > * {
+    flex: 1;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .form-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #334155;
+  }
+  .required {
+    color: #ef4444;
+  }
+  .form-input {
+    padding: 8px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #0f172a;
+    background: #f8fafc;
+    outline: none;
+    font-family: inherit;
+  }
+  .form-input:focus {
+    border-color: #109a9d;
+  }
+  .form-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 12px;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  .select-placeholder {
+    color: #94a3b8;
+  }
+  .form-textarea {
+    padding: 8px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #0f172a;
+    background: #f8fafc;
+    outline: none;
+    resize: vertical;
+    font-family: inherit;
+    min-height: 60px;
+  }
+  .form-textarea:focus {
+    border-color: #109a9d;
+  }
+  .form-select-native {
+    appearance: auto;
+    cursor: pointer;
+    color: #0f172a;
+  }
+  .form-select-native:invalid,
+  .form-select-native option[disabled] {
+    color: #94a3b8;
+  }
+  .form-select-native:focus {
+    border-color: #109a9d;
+  }
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .btn-modal {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: none;
+  }
+  .btn-cancel {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+  .btn-cancel:hover {
+    background: #e2e8f0;
+  }
+  .btn-save {
+    background: linear-gradient(135deg, #109a9d, #0e8588);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(16, 154, 157, 0.3);
+  }
+  .btn-save:hover {
+    filter: brightness(1.1);
+  }
+
+  /* ===== Content ===== */
+  .demo-content {
+    padding: 14px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* ===== Dashboard Grid ===== */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  @media (min-width: 640px) {
+    .dashboard-grid {
+      grid-template-columns: 2fr 1fr;
+    }
+    .donuts-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .chart-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+  .chart-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .chart-card-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+  .chart-btn {
+    background: #109a9d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 9px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .chart-btn:hover {
+    background: #0e8588;
+  }
+
+  /* Chart Legend */
+  .chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 10px;
+    color: #475569;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  /* Bar Chart */
+  .bar-chart-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .bar-chart {
+    width: 100%;
+    height: auto;
+    max-height: 140px;
+  }
+  .chart-label {
+    font-size: 7px;
+    fill: #94a3b8;
+  }
+  .chart-label-x {
+    font-size: 7px;
+    fill: #94a3b8;
+    text-anchor: middle;
+  }
+  .grid-line {
+    stroke: #f1f5f9;
+    stroke-width: 0.5;
+  }
+
+  /* Who's In/Out */
+  .whois-card {
+    text-align: center;
+  }
+  .whois-subtitle {
+    font-size: 9px;
+    color: #94a3b8;
+    margin: 2px 0 12px;
+  }
+  .whois-stats {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .whois-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .whois-number {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .whois-number.green {
+    color: #109a9d;
+  }
+  .whois-number.amber {
+    color: #f59e0b;
+  }
+  .whois-number.slate {
+    color: #94a3b8;
+  }
+  .whois-label {
+    font-size: 8px;
+    color: #94a3b8;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+  .whois-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .whois-bar-seg {
+    height: 100%;
+  }
+  .whois-bar-seg.green {
+    background: #109a9d;
+  }
+  .whois-bar-seg.amber {
+    background: #f59e0b;
+  }
+  .whois-bar-seg.slate {
+    background: #cbd5e1;
+  }
+
+  /* Donut Charts */
+  .donut-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+  }
+  .donut-chart {
+    width: 90px;
+    height: 90px;
+    transform: rotate(-90deg);
+  }
+  .donut-seg {
+    transition: stroke-dasharray 0.6s ease;
+  }
+  .donut-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 9.5px;
+    color: #475569;
+  }
+  .donut-legend span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .chart-card {
+    animation: fadeInUp 0.4s ease-out 0.1s both;
+  }
+  .whois-card {
+    animation: fadeInUp 0.4s ease-out 0.2s both;
+  }
+  .donuts-row .chart-card:first-child {
+    animation-delay: 0.25s;
+  }
+  .donuts-row .chart-card:last-child {
+    animation-delay: 0.35s;
+  }
+</style>
+
+<script>
+  // === Elementos ===
+  const fichajeInitial = document.getElementById("fichaje-initial");
+  const fichajeWorking = document.getElementById("fichaje-working");
+  const fichajePaused = document.getElementById("fichaje-paused");
+  const avatarInitial = document.getElementById("topbar-avatar-initial");
+  const modalOverlay = document.getElementById("modal-overlay");
+  const formHora = document.getElementById("form-hora") as HTMLInputElement;
+  const formFecha = document.getElementById("form-fecha") as HTMLInputElement;
+
+  const btnPlay = document.getElementById("btn-play");
+  const btnQuick = document.getElementById("btn-quick");
+  const btnChange = document.getElementById("btn-change");
+  const btnBreak = document.getElementById("btn-break");
+  const btnStop = document.getElementById("btn-stop");
+  const btnResume = document.getElementById("btn-resume");
+  const btnStop2 = document.getElementById("btn-stop2");
+  const modalCancel = document.getElementById("modal-cancel");
+  const modalSave = document.getElementById("modal-save");
+
+  const stopwatchEl = document.getElementById("stopwatch");
+  const stopwatchPausedEl = document.getElementById("stopwatch-paused");
+
+  let timer: ReturnType<typeof setInterval> | null = null;
+  let elapsed = 0; // seconds
+
+  function formatTime(sec: number): string {
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    const s = sec % 60;
+    return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  }
+
+  function startTimer() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => {
+      elapsed++;
+      if (stopwatchEl) stopwatchEl.textContent = formatTime(elapsed);
+      if (stopwatchPausedEl)
+        stopwatchPausedEl.textContent = formatTime(elapsed);
+    }, 1000);
+  }
+
+  function stopTimerInterval() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  // State transitions
+  function showState(state: "initial" | "working" | "paused") {
+    fichajeInitial!.style.display = state === "initial" ? "flex" : "none";
+    fichajeWorking!.style.display = state === "working" ? "flex" : "none";
+    fichajePaused!.style.display = state === "paused" ? "flex" : "none";
+    avatarInitial!.style.display = state === "initial" ? "flex" : "none";
+  }
+
+  function openModal() {
+    const now = new Date();
+    if (formHora)
+      formHora.value = now.toLocaleTimeString("es-ES", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    if (formFecha)
+      formFecha.value = now.toLocaleDateString("es-ES", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+    modalOverlay!.style.display = "flex";
+  }
+
+  function closeModal() {
+    modalOverlay!.style.display = "none";
+  }
+
+  function beginWorking() {
+    showState("working");
+    startTimer();
+  }
+
+  function resetAll() {
+    stopTimerInterval();
+    elapsed = 0;
+    if (stopwatchEl) stopwatchEl.textContent = formatTime(0);
+    if (stopwatchPausedEl) stopwatchPausedEl.textContent = formatTime(0);
+    showState("initial");
+    closeModal();
+  }
+
+  // "Entrar" -> abre modal
+  btnPlay?.addEventListener("click", () => openModal());
+
+  // "Reanudar" (quick start) -> directamente empieza a trabajar
+  btnQuick?.addEventListener("click", () => beginWorking());
+
+  // Modal: Cancelar
+  modalCancel?.addEventListener("click", () => closeModal());
+
+  // Modal: Guardar -> cierra modal y empieza a trabajar
+  modalSave?.addEventListener("click", () => {
+    closeModal();
+    beginWorking();
+  });
+
+  // Cambiar (botón verde) -> reabre modal para cambiar info
+  btnChange?.addEventListener("click", () => openModal());
+
+  // Descanso (botón amarillo) -> pausa el timer
+  btnBreak?.addEventListener("click", () => {
+    stopTimerInterval();
+    showState("paused");
+  });
+
+  // Stop (botón rojo, working) -> para todo
+  btnStop?.addEventListener("click", () => resetAll());
+
+  // Resume (botón en paused) -> reanuda
+  btnResume?.addEventListener("click", () => {
+    showState("working");
+    startTimer();
+  });
+
+  // Stop (botón rojo, paused) -> para todo
+  btnStop2?.addEventListener("click", () => resetAll());
+
+  // Clic en overlay cierra el modal
+  modalOverlay?.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) closeModal();
+  });
+</script>

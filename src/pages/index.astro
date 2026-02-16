@@ -6,6 +6,7 @@ import LeadForm from '../components/LeadForm.astro';
 import Features from '../components/Features.astro';
 import SocialProof from '../components/SocialProof.astro';
 import StickyScroll from '../components/StickyScroll.astro';
+import InteractiveDemo from '../components/InteractiveDemo.astro';
 
 const heroData = {
   title: "Controla el horario de tu equipo",
@@ -83,7 +84,9 @@ const heroData = {
                     <div class="w-3 h-3 rounded-full bg-slate-300"></div>
                  </div>
 
-                 <p class="text-slate-400 font-medium z-10">[ Captura de Interfaz Limpia de Rapidgest ]</p>
+                 <div class="w-full h-full pt-12"> 
+                    <InteractiveDemo />
+                 </div>
              </div>
         </div>
       </section>
