@@ -1,0 +1,42 @@
+---
+const features = [
+  {
+    title: "Fichaje en 1 clic",
+    description: "Tus empleados registran su jornada desde el móvil o el ordenador en segundos, sin complicaciones.",
+    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" // Icono de reloj (SVG de Heroicons)
+  },
+  {
+    title: "Gestión de Ausencias",
+    description: "Centraliza las peticiones de vacaciones, bajas y permisos. Aprueba o deniega con un solo clic.",
+    icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" // Icono de calendario
+  },
+  {
+    title: "Informes Legales",
+    description: "Genera al instante los reportes exigidos por la Inspección de Trabajo en formato PDF o Excel.",
+    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" // Icono de documento
+  }
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Todo lo que necesitas para tu equipo</h2>
+      <p class="text-brand-dark/70 max-w-2xl mx-auto">La herramienta más completa para la gestión del tiempo, diseñada para empresas modernas.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+      {features.map((feature) => (
+        <div class="p-8 rounded-2xl bg-slate-50 border border-brand-light/50 hover:border-brand-blue/30 transition-all group">
+          <div class="w-14 h-14 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <svg class="w-7 h-7 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feature.icon}></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">{feature.title}</h3>
+          <p class="text-brand-dark/70 leading-relaxed">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
