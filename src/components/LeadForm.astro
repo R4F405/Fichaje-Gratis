@@ -3,23 +3,57 @@
 ---
 
 <section id="demo" class="py-20 bg-slate-50 relative">
-  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-light to-transparent"></div>
-  
+  <div
+    class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-light to-transparent"
+  >
+  </div>
+
   <div class="container mx-auto px-6 max-w-4xl">
-    <div class="bg-white rounded-3xl shadow-xl shadow-brand-dark/5 border border-brand-light/50 overflow-hidden flex flex-col md:flex-row">
-      
-      <div class="bg-brand-blue p-10 md:w-5/12 text-white flex flex-col justify-center relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-green/20 rounded-full blur-2xl"></div>
-        
-        <h3 class="text-3xl font-bold mb-4 relative z-10">Solicita tu demostración gratuita</h3>
-        <p class="text-white/80 mb-6 relative z-10">Déjanos tus datos y un especialista de Rapidgest te enseñará la plataforma en menos de 24 horas.</p>
+    <div
+      class="bg-white rounded-3xl shadow-xl shadow-brand-dark/5 border border-brand-light/50 overflow-hidden flex flex-col md:flex-row"
+    >
+      <div
+        class="bg-brand-blue p-10 md:w-5/12 text-white flex flex-col justify-center relative overflow-hidden"
+      >
+        <div
+          class="absolute -top-10 -right-10 w-40 h-40 bg-brand-green/20 rounded-full blur-2xl"
+        >
+        </div>
+
+        <h3 class="text-3xl font-bold mb-4 relative z-10">
+          Solicita tu demostración gratuita
+        </h3>
+        <p class="text-white/80 mb-6 relative z-10">
+          Déjanos tus datos y un especialista de Rapidgest te enseñará la
+          plataforma en menos de 24 horas.
+        </p>
         <ul class="space-y-3 relative z-10">
           <li class="flex items-center gap-2 text-white/90">
-            <svg class="w-5 h-5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <svg
+              class="w-5 h-5 text-brand-green"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
             Sin compromiso
           </li>
           <li class="flex items-center gap-2 text-white/90">
-            <svg class="w-5 h-5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <svg
+              class="w-5 h-5 text-brand-green"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
             Configuración guiada
           </li>
         </ul>
@@ -29,24 +63,70 @@
         <form class="space-y-5">
           <div class="grid grid-cols-2 gap-5">
             <div>
-              <label class="block text-sm font-medium text-brand-dark mb-1">Nombre</label>
-              <input type="text" class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="Tu nombre">
+              <label class="block text-sm font-medium text-brand-dark mb-1"
+                >Nombre</label
+              >
+              <input
+                type="text"
+                class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all"
+                placeholder="Tu nombre"
+              />
             </div>
             <div>
-              <label class="block text-sm font-medium text-brand-dark mb-1">Empresa</label>
-              <input type="text" class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="Nombre empresa">
+              <label class="block text-sm font-medium text-brand-dark mb-1"
+                >Empresa</label
+              >
+              <input
+                type="text"
+                class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all"
+                placeholder="Nombre empresa"
+              />
             </div>
           </div>
           <div>
-            <label class="block text-sm font-medium text-brand-dark mb-1">Email profesional</label>
-            <input type="email" class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="hola@empresa.com">
+            <label class="block text-sm font-medium text-brand-dark mb-1"
+              >Email profesional</label
+            >
+            <input
+              type="email"
+              class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all"
+              placeholder="hola@empresa.com"
+            />
           </div>
-          <button type="submit" class="w-full bg-brand-blue hover:bg-brand-blue-hover text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 mt-2">
+          <button
+            id="demo-submit-btn"
+            type="submit"
+            disabled
+            class="w-full bg-brand-blue hover:bg-brand-blue-hover text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             Solicitar Demo Ahora
           </button>
-          <p class="text-xs text-brand-dark/50 text-center mt-4">Al enviar este formulario aceptas nuestra política de privacidad.</p>
+          <label class="flex items-start gap-2 mt-4 cursor-pointer">
+            <input
+              id="accept-privacy"
+              type="checkbox"
+              class="mt-0.5 w-4 h-4 rounded border-brand-light text-brand-blue focus:ring-brand-blue cursor-pointer"
+            />
+            <span class="text-xs text-brand-dark/50"
+              >He leído y acepto la <a
+                href="https://rapidgest.com/politica-de-privacidad-de-datos/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline hover:text-brand-blue transition-colors"
+                >política de privacidad</a
+              >.</span
+            >
+          </label>
         </form>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const checkbox = document.getElementById("accept-privacy");
+  const submitBtn = document.getElementById("demo-submit-btn");
+  checkbox?.addEventListener("change", () => {
+    submitBtn.disabled = !checkbox.checked;
+  });
+</script>
