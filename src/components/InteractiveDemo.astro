@@ -927,6 +927,18 @@
   .btn-play {
     background: linear-gradient(135deg, #109a9d, #0e8588);
     box-shadow: 0 2px 8px rgba(16, 154, 157, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 2px 8px rgba(16, 154, 157, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 4px 20px rgba(16, 154, 157, 0.5);
+      transform: scale(1.05);
+    }
   }
   .btn-quick {
     background: linear-gradient(135deg, #0e8588, #0c7275);
