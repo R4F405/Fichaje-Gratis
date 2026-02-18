@@ -1,0 +1,137 @@
+---
+// Componente de Preguntas Frecuentes con acordeón interactivo.
+const faqs = [
+    {
+        question: "¿Sirve para la Inspección de Trabajo?",
+        answer: "Sí. Rapidgest genera informes y reportes completos de registro de jornada que cumplen con los requisitos legales. Podrás exportar y presentar toda la documentación necesaria ante una inspección de forma inmediata.",
+    },
+    {
+        question: "¿Qué información incluye cada fichaje?",
+        answer: "Cada registro de fichaje puede incluir cliente, proyecto, actividad y, muy importante, la localización. El sistema registra tanto la ubicación real del dispositivo como la localización asignada por el empleado, garantizando total transparencia.",
+    },
+    {
+        question:
+            "¿Puedo ver en tiempo real quién está trabajando, descansando o fuera?",
+        answer: "Sí. Dispones de un panel de control intuitivo donde puedes ver de un vistazo el estado de todo tu equipo: quién está fichado, quién está en descanso y quién aún no ha comenzado su jornada.",
+    },
+    {
+        question: "¿Qué pasa si un empleado olvida fichar a la salida?",
+        answer: "El sistema está preparado para estos casos. Cuando se alcanzan las horas máximas configuradas, Rapidgest envía un aviso de final de jornada. Si no hay respuesta en 5 minutos, el fichaje se cierra automáticamente. El empleado puede retomar su fichaje en cualquier momento si necesita seguir trabajando.",
+    },
+    {
+        question: "¿Y si olvida fichar a la entrada?",
+        answer: "No es un problema. Los datos de fichaje se pueden modificar antes de la validación. Tanto el trabajador como el administrador deben aprobar el cambio, y siempre se registra el motivo de la corrección para mantener la trazabilidad.",
+    },
+    {
+        question: "¿Puedo conocer la ubicación desde la que fichó un empleado?",
+        answer: "Sí. Cada fichaje registra la geolocalización del dispositivo. Puedes consultar desde dónde se realizó cada registro, lo que resulta especialmente útil para equipos en movilidad o trabajo en campo.",
+    },
+    {
+        question: "¿Qué información puedo consultar en el panel?",
+        answer: "Desde el panel puedes ver de forma visual e intuitiva las horas de cada trabajador en el periodo que necesites, quién está dentro, fuera o descansando, y el desglose del tiempo dedicado a cada proyecto y actividad.",
+    },
+    {
+        question: "¿Cuánto se tarda en configurar?",
+        answer: "Cero. Nada más acceder a Rapidgest ya puedes empezar a fichar. No necesitas instalaciones, configuraciones complicadas ni periodo de implantación. Entra y empieza a usarlo.",
+    },
+    {
+        question: "¿Qué configuraciones puedo personalizar?",
+        answer: "Puedes definir distintos tipos de horario (flexible, fijo, semanal…), establecer un máximo de horas por jornada, y crear y asignar equipos de trabajo para organizar a tu plantilla como necesites.",
+    },
+];
+---
+
+<section id="faq" class="py-20 bg-white relative">
+    <div
+        class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-light to-transparent"
+    >
+    </div>
+
+    <div class="container mx-auto px-6 max-w-3xl">
+        <div class="text-center mb-12">
+            <h2
+                class="text-3xl md:text-4xl font-extrabold tracking-tight text-brand-dark"
+            >
+                Preguntas frecuentes
+            </h2>
+            <p class="text-slate-500 mt-3 text-lg">
+                Todo lo que necesitas saber sobre el fichaje con Rapidgest
+            </p>
+        </div>
+
+        <div class="space-y-3" id="faq-accordion">
+            {
+                faqs.map((faq, index) => (
+                    <div class="faq-item border border-brand-light/60 rounded-xl overflow-hidden transition-all duration-200 hover:border-brand-blue/30 bg-slate-50/50">
+                        <button
+                            type="button"
+                            class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-brand-dark transition-colors"
+                            data-index={index}
+                            aria-expanded="false"
+                        >
+                            <span class="text-sm md:text-base">
+                                {faq.question}
+                            </span>
+                            <svg
+                                class="faq-icon w-5 h-5 text-brand-blue shrink-0 transition-transform duration-300"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 9l-7 7-7-7"
+                                />
+                            </svg>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="px-6 pb-5 text-sm md:text-base text-slate-600 leading-relaxed">
+                                {faq.answer}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .faq-item.active {
+        border-color: rgba(16, 154, 157, 0.25);
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(16, 154, 157, 0.06);
+    }
+    .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+    }
+    .faq-item.active .faq-content {
+        max-height: 300px;
+    }
+</style>
+
+<script>
+    document.querySelectorAll(".faq-trigger").forEach((button) => {
+        button.addEventListener("click", () => {
+            const item = button.closest(".faq-item");
+            const isActive = item?.classList.contains("active");
+
+            // Close all
+            document.querySelectorAll(".faq-item").forEach((el) => {
+                el.classList.remove("active");
+                el.querySelector(".faq-trigger")?.setAttribute(
+                    "aria-expanded",
+                    "false",
+                );
+            });
+
+            // Toggle clicked
+            if (!isActive && item) {
+                item.classList.add("active");
+                button.setAttribute("aria-expanded", "true");
+            }
+        });
+    });
+</script>

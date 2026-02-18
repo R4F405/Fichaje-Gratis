@@ -8,13 +8,16 @@ import SocialProof from "../components/SocialProof.astro";
 import StickyScroll from "../components/StickyScroll.astro";
 import InteractiveDemo from "../components/InteractiveDemo.astro";
 import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import ERPBanner from "../components/RapidgestBanner.astro";
+import APISection from "../components/APISection.astro";
 
 const heroData = {
-  title: "Controla el horario de tu equipo",
-  titleHighlight: "sin complicaciones", // Lo separamos para darle un estilo especial
+  title: "Fichaje gratis para tu equipo",
+  titleHighlight: "sin complicaciones",
   subtitle:
-    "La solución de fichaje digital integrada en Rapidgest. Registra jornadas, gestiona ausencias y cumple la normativa desde cualquier dispositivo en segundos.",
-  ctaText: "Solicitar demo",
+    "Controla el horario de tus empleados gratis con Rapidgest. Registro de jornada digital, gestión de ausencias y cumplimiento normativo desde cualquier dispositivo. Sin coste, sin compromiso.",
+  ctaText: "Empezar gratis",
   ctaLink: "#demo",
   appName: "Rapidgest",
 };
@@ -160,13 +163,6 @@ const heroData = {
       <section
         class="container mx-auto px-6 pt-24 pb-16 text-center md:pt-36 md:pb-24 relative"
       >
-        <div
-          class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white border border-slate-200 shadow-sm text-sm font-semibold mb-8 text-brand-dark/80 transition-all hover:border-brand-blue/30 cursor-default"
-        >
-          <span class="flex h-2 w-2 rounded-full bg-brand-green"></span>
-          Nuevo módulo de control horario
-        </div>
-
         <h1
           class="text-5xl md:text-7xl font-extrabold tracking-tighter text-slate-900 mb-6 max-w-5xl mx-auto leading-[1.1]"
         >
@@ -240,6 +236,9 @@ const heroData = {
         <SocialProof />
         <StickyScroll />
         <Features />
+        <ERPBanner />
+        <APISection />
+        <FAQ />
       </div>
     </main>
 

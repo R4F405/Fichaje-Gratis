@@ -1,0 +1,99 @@
+---
+// Sección API para empresas que ya tienen su propio software.
+const apiFeatures = [
+    {
+        title: "RESTful API documentada",
+        description:
+            "Endpoints claros y bien documentados para gestionar fichajes, empleados, horarios y reportes.",
+        icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
+    },
+    {
+        title: "Pruebas con Swagger",
+        description:
+            "Accede a nuestro entorno interactivo de pruebas tipo Swagger. Prueba cada endpoint con GET, POST, PUT o DELETE usando tu token de Rapidgest antes de integrarlo.",
+        icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4",
+    },
+    {
+        title: "Integración en minutos",
+        description:
+            "Sin migraciones ni cambios en tu infraestructura. Conecta tu software actual y empieza a fichar hoy.",
+        icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
+    },
+];
+---
+
+<section class="py-20 bg-slate-50 relative">
+    <div
+        class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-light to-transparent"
+    >
+    </div>
+
+    <div class="container mx-auto px-6 max-w-5xl">
+        <div class="text-center mb-14">
+            <h2
+                class="text-3xl md:text-4xl font-extrabold tracking-tight text-brand-dark mb-4"
+            >
+                ¿Ya tienes tu propio software?<br class="hidden md:block" />
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-blue-hover"
+                    >Añade control horario en una tarde.</span
+                >
+            </h2>
+            <p class="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
+                Conecta nuestro módulo de fichaje a tu ERP, CRM o plataforma
+                mediante nuestra API. Sin sustituir nada, sin complicaciones. Tú
+                mantienes tu sistema, nosotros te damos el fichaje.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            {
+                apiFeatures.map((feature) => (
+                    <div class="relative p-8 rounded-2xl bg-white border border-brand-light/50 hover:border-brand-blue/30 transition-all group shadow-sm">
+                        <div class="w-12 h-12 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <svg
+                                class="w-6 h-6 text-brand-blue"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d={feature.icon}
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-2">
+                            {feature.title}
+                        </h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            {feature.description}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="text-center mt-10">
+            <a
+                href="#demo"
+                class="inline-flex items-center gap-2 bg-brand-dark hover:bg-slate-800 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 shadow-md hover:-translate-y-0.5"
+            >
+                Solicitar acceso a la API
+                <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg
+                >
+            </a>
+        </div>
+    </div>
+</section>
