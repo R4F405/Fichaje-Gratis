@@ -1,5 +1,6 @@
 ---
 // Un formulario limpio, pidiendo solo lo esencial para que convierta mejor.
+const appsScriptUrl = import.meta.env.PUBLIC_APPS_SCRIPT_URL;
 ---
 
 <section id="demo" class="py-20 bg-slate-50 relative">
@@ -60,7 +61,7 @@
       </div>
 
       <div class="p-10 md:w-7/12">
-        <form class="space-y-5">
+        <form id="lead-form" class="space-y-5" data-script-url={appsScriptUrl}>
           <div class="grid grid-cols-2 gap-5">
             <div>
               <label class="block text-sm font-medium text-brand-dark mb-1"
@@ -68,8 +69,10 @@
               >
               <input
                 type="text"
+                name="nombre"
                 class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all"
                 placeholder="Tu nombre"
+                required
               />
             </div>
             <div>
@@ -78,8 +81,10 @@
               >
               <input
                 type="text"
+                name="empresa"
                 class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all"
                 placeholder="Nombre empresa"
+                required
               />
             </div>
           </div>
@@ -89,10 +94,25 @@
             >
             <input
               type="email"
+              name="email"
               class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all"
               placeholder="hola@empresa.com"
+              required
             />
           </div>
+          <div>
+            <label class="block text-sm font-medium text-brand-dark mb-1"
+              >Telefono</label
+            >
+            <input
+              type="tel"
+              name="telefono"
+              class="w-full px-4 py-2.5 rounded-lg border border-brand-light focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all"
+              placeholder="600 000 000"
+              required
+            />
+          </div>
+          <input id="lead-interes" type="hidden" name="interes" value="fichaje" />
           <button
             id="demo-submit-btn"
             type="submit"
@@ -101,6 +121,7 @@
           >
             Solicitar Demo Ahora
           </button>
+          <p id="lead-form-status" class="hidden text-sm rounded-lg px-3 py-2"></p>
           <label class="flex items-start gap-2 mt-4 cursor-pointer">
             <input
               id="accept-privacy"
@@ -122,9 +143,96 @@
 </section>
 
 <script>
+  const form = document.getElementById("lead-form");
   const checkbox = document.getElementById("accept-privacy");
   const submitBtn = document.getElementById("demo-submit-btn");
+  const interesInput = document.getElementById("lead-interes");
+  const statusEl = document.getElementById("lead-form-status");
+
+  const showStatus = (type, text) => {
+    if (!statusEl) return;
+    statusEl.textContent = text;
+    statusEl.classList.remove(
+      "hidden",
+      "text-red-700",
+      "bg-red-50",
+      "border",
+      "border-red-200",
+      "text-emerald-700",
+      "bg-emerald-50",
+      "border-emerald-200"
+    );
+
+    if (type === "error") {
+      statusEl.classList.add("text-red-700", "bg-red-50", "border", "border-red-200");
+      return;
+    }
+
+    statusEl.classList.add("text-emerald-700", "bg-emerald-50", "border", "border-emerald-200");
+  };
+
+  const setInteres = (value) => {
+    if (!value) return;
+    sessionStorage.setItem("lead_interes", value);
+    if (interesInput) interesInput.value = value;
+  };
+
+  document.querySelectorAll("[data-lead-interes]").forEach((el) => {
+    el.addEventListener("click", () => {
+      setInteres(el.getAttribute("data-lead-interes"));
+    });
+  });
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const interesFromUrl = urlParams.get("interes");
+  const interesFromSession = sessionStorage.getItem("lead_interes");
+  setInteres(interesFromUrl || interesFromSession || "fichaje");
+
   checkbox?.addEventListener("change", () => {
     submitBtn.disabled = !checkbox.checked;
+  });
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (statusEl) statusEl.classList.add("hidden");
+
+    if (!checkbox?.checked) {
+      showStatus("error", "Debes aceptar la política de privacidad para continuar.");
+      return;
+    }
+
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.textContent = "Enviando...";
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    const scriptURL = form.dataset.scriptUrl;
+
+    if (!scriptURL || scriptURL === "TU_URL_DE_APPS_SCRIPT_AQUI") {
+      showStatus("error", "Falta configurar la URL de Google Apps Script.");
+      submitBtn.textContent = originalBtnText;
+      submitBtn.disabled = !checkbox.checked;
+      return;
+    }
+
+    try {
+      await fetch(scriptURL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
+
+      showStatus("success", "Formulario enviado. Gracias, te contactaremos pronto.");
+      form.reset();
+      setInteres("fichaje");
+      submitBtn.disabled = true;
+      checkbox.checked = false;
+    } catch (error) {
+      console.error("Error enviando formulario:", error);
+      showStatus("error", "Hubo un error al enviar. Por favor, inténtalo de nuevo.");
+      submitBtn.disabled = !checkbox.checked;
+    } finally {
+      submitBtn.textContent = originalBtnText;
+    }
   });
 </script>

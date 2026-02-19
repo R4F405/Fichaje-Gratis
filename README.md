@@ -1,43 +1,112 @@
-# Astro Starter Kit: Minimal
+# Fichaje Gratis (Rapidgest)
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Landing page built with Astro + Tailwind. It promotes the free time-tracking offer and captures leads into Google Sheets via Apps Script.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
 /
 ├── public/
+│   └── Images/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/
+│   ├── pages/
+│   └── styles/
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Pages
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- [src/pages/index.astro](src/pages/index.astro): Main landing page with all sections.
+- [src/pages/aviso-legal.astro](src/pages/aviso-legal.astro): Legal notice.
+- [src/pages/politica-privacidad.astro](src/pages/politica-privacidad.astro): Privacy policy.
+- [src/pages/cookies.astro](src/pages/cookies.astro): Cookies policy.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Components
 
-## 🧞 Commands
+- [src/components/SiteHeader.astro](src/components/SiteHeader.astro): Top navigation with CTA.
+- [src/components/LeadForm.astro](src/components/LeadForm.astro): Lead form and Apps Script submission logic.
+- [src/components/SocialProof.astro](src/components/SocialProof.astro): Logos/testimonials section.
+- [src/components/StickyScroll.astro](src/components/StickyScroll.astro): Sticky scroll narrative block.
+- [src/components/Features.astro](src/components/Features.astro): Feature grid.
+- [src/components/InteractiveDemo.astro](src/components/InteractiveDemo.astro): Interactive mock demo.
+- [src/components/RapidgestBanner.astro](src/components/RapidgestBanner.astro): ERP banner.
+- [src/components/APISection.astro](src/components/APISection.astro): API features and CTA.
+- [src/components/FAQ.astro](src/components/FAQ.astro): Frequently asked questions.
+- [src/components/Footer.astro](src/components/Footer.astro): Footer links and copy.
+- [src/components/BrandLockup.astro](src/components/BrandLockup.astro): Logo/brand lockup.
 
-All commands are run from the root of the project, from a terminal:
+## Styles
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- [src/styles/global.css](src/styles/global.css): Global styles and Tailwind setup.
 
-## 👀 Want to learn more?
+## Environment Variables
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Create a `.env` file in the project root:
+
+```bash
+PUBLIC_APPS_SCRIPT_URL=https://script.google.com/macros/s/XXXX/exec
+```
+
+The URL must be the Apps Script Web App URL ending in `/exec`.
+
+## Apps Script Setup (Google Sheets)
+
+1. Create a Google Sheet with columns: `nombre`, `empresa`, `email`, `telefono`, `fecha`, `interes`.
+2. Create an Apps Script project and deploy as a Web App.
+3. Use `openById` to target the sheet, then redeploy.
+
+Example `doPost`:
+
+```javascript
+function doPost(e) {
+	const SPREADSHEET_ID = "YOUR_SHEET_ID";
+	const SHEET_NAME = "Hoja 1";
+	const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+
+	const rowData = [
+		e.parameter.nombre || "",
+		e.parameter.empresa || "",
+		e.parameter.email || "",
+		e.parameter.telefono || "",
+		new Date(),
+		e.parameter.interes || "fichaje",
+	];
+
+	sheet.appendRow(rowData);
+
+	return ContentService
+		.createTextOutput(JSON.stringify({ result: "success" }))
+		.setMimeType(ContentService.MimeType.JSON);
+}
+```
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Local dev server runs at `http://localhost:4321/`.
+
+## Production Build
+
+```bash
+npm run build
+```
+
+The static output is generated in `dist/`.
+
+## Preview Build
+
+```bash
+npm run preview
+```
+
+## Deployment Notes
+
+- Deploy the contents of `dist/` to any static host (Vercel, Netlify, Cloudflare Pages, etc.).
+- Make sure `PUBLIC_APPS_SCRIPT_URL` is configured in the hosting environment.
