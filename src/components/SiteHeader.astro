@@ -9,9 +9,11 @@ const headerClass = sticky
 ---
 
 <header class={headerClass}>
-  <div class="container mx-auto px-6 py-4 max-w-6xl flex items-center justify-between">
+  <div
+    class="mx-auto w-full max-w-6xl px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3"
+  >
     <BrandLockup textClass="text-brand-dark" />
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2 sm:gap-4 shrink-0">
       <slot name="actions" />
     </div>
   </div>

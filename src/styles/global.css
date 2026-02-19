@@ -8,3 +8,10 @@
   --color-brand-dark: #494949;
   --color-brand-light: #cecdcc;
 }
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+}

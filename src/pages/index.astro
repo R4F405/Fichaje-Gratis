@@ -24,7 +24,7 @@ const heroData = {
 };
 ---
 
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth overflow-x-clip">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -119,28 +119,30 @@ const heroData = {
     </script>
   </head>
   <body
-    class="bg-slate-50 text-brand-dark font-sans antialiased overflow-x-hidden relative"
+    class="bg-slate-50 text-brand-dark font-sans antialiased overflow-x-clip relative"
   >
     <div
-      class="absolute inset-0 z-[-2] h-screen w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
+      class="fixed inset-0 z-[-2] h-[100dvh] w-screen bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"
     >
     </div>
 
     <div
-      class="absolute top-0 right-0 -z-10 transform-gpu overflow-hidden blur-3xl opacity-30"
+      class="absolute top-0 right-0 -z-10 w-full transform-gpu overflow-hidden blur-3xl opacity-30 pointer-events-none"
       aria-hidden="true"
     >
       <div
-        class="aspect-[1108/632] w-[69.25rem] bg-gradient-to-r from-brand-blue to-brand-green"
+        class="aspect-[1108/632] w-[69.25rem] ml-auto bg-gradient-to-r from-brand-blue to-brand-green"
         style="clip-path: polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)"
       >
       </div>
     </div>
     <div
-      class="absolute -top-24 -left-40 -z-10 transform-gpu overflow-hidden blur-3xl opacity-20"
+      class="absolute -top-24 left-0 -z-10 w-full transform-gpu overflow-hidden blur-3xl opacity-20 pointer-events-none"
       aria-hidden="true"
     >
-      <div class="aspect-[1108/632] w-[40rem] bg-brand-blue rounded-full"></div>
+      <div
+        class="aspect-[1108/632] w-[40rem] -translate-x-40 bg-brand-blue rounded-full"
+      ></div>
     </div>
 
     <SiteHeader sticky={true}>
@@ -148,14 +150,14 @@ const heroData = {
         slot="actions"
         href="#demo"
         data-lead-interes="fichaje"
-        class="bg-brand-blue hover:bg-brand-blue-hover text-white text-sm font-semibold py-2 px-5 rounded-lg transition-colors duration-200"
+        class="bg-brand-blue hover:bg-brand-blue-hover text-white text-xs sm:text-sm font-semibold py-2 px-4 sm:px-5 rounded-lg transition-colors duration-200"
         >Solicitar demo</a
       >
     </SiteHeader>
 
     <main>
       <section
-        class="container mx-auto px-6 pt-24 pb-16 text-center md:pt-36 md:pb-24 relative"
+        class="mx-auto w-full max-w-6xl px-4 sm:px-6 pt-20 pb-16 text-center md:pt-36 md:pb-24 relative"
       >
         <h1
           class="text-5xl md:text-7xl font-extrabold tracking-tighter text-slate-900 mb-6 max-w-5xl mx-auto leading-[1.1]"
@@ -212,7 +214,7 @@ const heroData = {
           </div>
 
           <div
-            class="relative bg-white rounded-3xl ring-1 ring-slate-200/50 shadow-2xl overflow-hidden aspect-[16/9] flex items-center justify-center transform transition-transform duration-500 hover:scale-[1.01]"
+            class="relative bg-white rounded-3xl ring-1 ring-slate-200/50 shadow-2xl overflow-hidden h-[320px] sm:h-auto sm:aspect-[16/9] flex items-center justify-center transform transition-transform duration-500 hover:scale-[1.01]"
           >
             <div
               class="absolute top-0 w-full h-12 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200 flex items-center px-4 gap-2 z-20"

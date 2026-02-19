@@ -726,6 +726,132 @@
       display: none;
     }
   }
+
+    @media (max-width: 640px) {
+      .demo-main {
+        overflow-y: hidden;
+      }
+
+      .demo-content {
+        padding: 10px 12px 12px;
+        gap: 10px;
+      }
+
+      .dashboard-grid {
+        display: block;
+      }
+
+      .dashboard-grid > :not(.chart-card-wide),
+      .donuts-row {
+        display: none;
+      }
+
+      .demo-topbar {
+        padding: 10px 12px;
+        min-height: 64px;
+        gap: 8px;
+      }
+
+      .topbar-left {
+        min-width: 0;
+      }
+
+      .topbar-title {
+        font-size: 11px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 130px;
+      }
+
+      .topbar-breadcrumb,
+      .btn-quick,
+      .topbar-avatar,
+      .topbar-avatar-sm {
+        display: none;
+      }
+
+      .fichaje-topbar {
+        gap: 6px;
+      }
+
+      .btn-top {
+        padding: 6px 10px;
+        font-size: 10px;
+        border-radius: 7px;
+        gap: 4px;
+      }
+
+      .btn-circle {
+        width: 28px;
+        height: 28px;
+      }
+
+      .timer-display {
+        font-size: 14px;
+        min-width: 68px;
+      }
+
+      .chart-card {
+        padding: 12px;
+      }
+
+      .bar-chart {
+        max-height: 120px;
+      }
+
+      .modal-overlay {
+        padding: 8px;
+        align-items: flex-start;
+      }
+
+      .modal-card {
+        margin-top: 6px;
+        width: 100%;
+        max-width: none;
+        max-height: calc(100% - 12px);
+        overflow-y: auto;
+        border-radius: 10px;
+        padding: 12px;
+      }
+
+      .modal-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .modal-form {
+        gap: 8px;
+      }
+
+      .form-row {
+        gap: 8px;
+      }
+
+      .form-label {
+        font-size: 10px;
+      }
+
+      .form-input,
+      .form-textarea {
+        padding: 7px 10px;
+        font-size: 11px;
+      }
+
+      .form-textarea {
+        min-height: 52px;
+      }
+
+      .modal-actions {
+        margin-top: 12px;
+        gap: 8px;
+      }
+
+      .btn-modal {
+        padding: 7px 14px;
+        font-size: 11px;
+      }
+    }
   .sidebar-brand {
     display: flex;
     align-items: center;
@@ -1051,6 +1177,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-width: 0;
   }
   .form-label {
     font-size: 11px;
@@ -1061,6 +1188,7 @@
     color: #ef4444;
   }
   .form-input {
+    width: 100%;
     padding: 8px 12px;
     border: 1.5px solid #e2e8f0;
     border-radius: 8px;
@@ -1088,6 +1216,7 @@
     color: #94a3b8;
   }
   .form-textarea {
+    width: 100%;
     padding: 8px 12px;
     border: 1.5px solid #e2e8f0;
     border-radius: 8px;
@@ -1359,6 +1488,13 @@
   }
   .donuts-row .chart-card:last-child {
     animation-delay: 0.35s;
+  }
+
+  @media (max-width: 640px) {
+    .topbar-avatar,
+    .topbar-avatar-sm {
+      display: none !important;
+    }
   }
 </style>
 
