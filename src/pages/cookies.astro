@@ -1,0 +1,97 @@
+---
+import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
+
+const pageTitle = "Politica de cookies | Fichaje Gratis";
+const pageDescription =
+  "Informacion sobre el uso de cookies y como gestionarlas desde tu navegador.";
+const lastUpdated = "18 de febrero de 2026";
+---
+
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="theme-color" content="#109a9d" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-slate-50 text-brand-dark font-sans antialiased">
+    <div
+      class="absolute inset-0 -z-10 h-[60vh] w-full bg-[radial-gradient(circle_at_10%_20%,#109a9d1a,transparent_55%),radial-gradient(circle_at_85%_0%,#dfdd1926,transparent_50%)]"
+    ></div>
+
+    <SiteHeader>
+      <a
+        slot="actions"
+        href="/"
+        class="text-sm font-semibold text-brand-blue hover:text-brand-blue-hover transition-colors"
+      >
+        Volver al inicio
+      </a>
+    </SiteHeader>
+
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+      <div class="bg-white border border-brand-light/60 rounded-3xl shadow-sm p-8 md:p-12">
+        <div class="mb-8">
+          <p class="text-sm uppercase tracking-[0.2em] text-brand-blue font-semibold">
+            Politica de cookies
+          </p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">
+            Uso de cookies en este sitio web
+          </h1>
+          <p class="text-slate-600 mt-3">
+            En esta politica explicamos que son las cookies, que tipos utilizamos y como puedes
+            gestionarlas.
+          </p>
+        </div>
+
+        <section class="space-y-8 text-slate-700 leading-relaxed">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Que son las cookies</h2>
+            <p>
+              Las cookies son pequenos archivos que se almacenan en tu navegador cuando visitas un
+              sitio web. Sirven para recordar tus preferencias y mejorar la experiencia de uso.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Tipos de cookies</h2>
+            <ul class="list-disc list-inside space-y-2">
+              <li>Cookies tecnicas: necesarias para el funcionamiento basico del sitio.</li>
+              <li>Cookies de preferencias: recuerdan ajustes como idioma o region.</li>
+              <li>Cookies analiticas: ayudan a medir el uso del sitio para mejorarlo.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Cookies utilizadas</h2>
+            <p>
+              Podemos utilizar cookies tecnicas propias y cookies de analitica de terceros para
+              comprender el uso del sitio y mejorar el contenido. Las cookies de terceros se
+              gestionan bajo sus propias politicas de privacidad.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Como gestionar las cookies</h2>
+            <p>
+              Puedes permitir, bloquear o eliminar las cookies desde la configuracion de tu
+              navegador. Ten en cuenta que si desactivas algunas cookies, ciertas funciones pueden
+              dejar de estar disponibles.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Actualizaciones</h2>
+            <p>
+              Esta politica puede actualizarse para adaptarse a cambios legales o tecnicos. La fecha
+              de la ultima actualizacion es: {lastUpdated}.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

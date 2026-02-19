@@ -1,0 +1,148 @@
+---
+import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
+
+const pageTitle = "Politica de privacidad | Fichaje Gratis";
+const pageDescription =
+  "Politica de privacidad con informacion sobre datos personales, finalidad y derechos.";
+---
+
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="theme-color" content="#109a9d" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-slate-50 text-brand-dark font-sans antialiased">
+    <div
+      class="absolute inset-0 -z-10 h-[60vh] w-full bg-[radial-gradient(circle_at_15%_15%,#109a9d1a,transparent_55%),radial-gradient(circle_at_85%_0%,#dfdd1926,transparent_50%)]"
+    ></div>
+
+    <SiteHeader>
+      <a
+        slot="actions"
+        href="/"
+        class="text-sm font-semibold text-brand-blue hover:text-brand-blue-hover transition-colors"
+      >
+        Volver al inicio
+      </a>
+    </SiteHeader>
+
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+      <div class="bg-white border border-brand-light/60 rounded-3xl shadow-sm p-8 md:p-12">
+        <div class="mb-8">
+          <p class="text-sm uppercase tracking-[0.2em] text-brand-blue font-semibold">
+            Politica de privacidad
+          </p>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">
+            Informacion sobre datos personales
+          </h1>
+          <p class="text-slate-600 mt-3">
+            En este documento explicamos que datos recopilamos, con que finalidad, y como puedes
+            ejercer tus derechos.
+          </p>
+        </div>
+
+        <section class="space-y-8 text-slate-700 leading-relaxed">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Responsable del tratamiento</h2>
+            <p>
+              Softtalia Informatica SL, CIF B-40655565, domicilio en C/ Sant Francesc de Borja, 16
+              Bajo, 46701 Gandia, Valencia (Espana). Email de contacto: info@softtalia.com.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Datos que recopilamos</h2>
+            <p>
+              Podemos solicitar nombre, apellidos, email, telefono y datos de facturacion cuando sean
+              necesarios para la prestacion del servicio. Ademas, al navegar por el sitio se
+              recogen datos tecnicos como la direccion IP o datos de uso.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Finalidad del tratamiento</h2>
+            <ul class="list-disc list-inside space-y-2">
+              <li>Responder solicitudes enviadas desde formularios de contacto.</li>
+              <li>Gestionar demostraciones o comunicaciones comerciales si las solicitas.</li>
+              <li>Mejorar la experiencia de usuario y la seguridad del sitio web.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Legitimacion</h2>
+            <p>
+              La base legal principal es el consentimiento otorgado por el usuario al enviar
+              formularios o aceptar esta politica. Puedes retirar tu consentimiento en cualquier
+              momento.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Conservacion</h2>
+            <p>
+              Conservaremos los datos durante el tiempo necesario para cumplir con las finalidades
+              indicadas o mientras exista una obligacion legal que lo requiera. Posteriormente se
+              eliminaran o anonimizaran.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Derechos</h2>
+            <p>
+              Puedes ejercer los derechos de acceso, rectificacion, supresion, limitacion y
+              oposicion enviando una solicitud a info@softtalia.com o por escrito a la direccion
+              indicada del responsable.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Seguridad</h2>
+            <p>
+              Softtalia aplica medidas tecnicas y organizativas razonables para proteger los datos
+              personales y evitar accesos no autorizados, perdida o alteracion.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Encargados y terceros</h2>
+            <p>
+              Para prestar servicios necesarios podemos compartir datos con proveedores que actuan
+              como encargados del tratamiento, como servicios de hosting, email y analitica, bajo
+              sus propias politicas de privacidad y con los acuerdos exigidos por la normativa.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Enlaces externos</h2>
+            <p>
+              El sitio web puede incluir enlaces a paginas de terceros. No somos responsables de sus
+              contenidos o practicas de privacidad. Te recomendamos leer sus politicas antes de
+              proporcionar datos personales.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Comunicaciones comerciales</h2>
+            <p>
+              No enviaremos comunicaciones comerciales sin tu consentimiento. Puedes oponerte o
+              revocar tu consentimiento en cualquier momento escribiendo a info@softtalia.com.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900 mb-2">Cambios en la politica</h2>
+            <p>
+              Softtalia se reserva el derecho a modificar esta politica para adaptarla a cambios
+              legales o de la industria. Las actualizaciones se publicaran en esta pagina.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,5 +1,6 @@
 ---
 // Footer con datos legales, contacto y copyright.
+import BrandLockup from "./BrandLockup.astro";
 ---
 
 <footer class="bg-brand-dark text-white/70 py-12">
@@ -9,39 +10,29 @@
         >
             <!-- Logo & Copyright -->
             <div class="text-center md:text-left">
-                <a
-                    href="https://rapidgest.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <img
-                        src="/logo-rapidges-001.png"
-                        alt="Rapidgest"
-                        class="h-8 brightness-0 invert"
-                    />
-                </a>
+                <BrandLockup
+                    href="/"
+                    invert={true}
+                    imgClass="h-8"
+                    textClass="text-white"
+                    className="justify-center md:justify-start"
+                />
                 <p class="text-sm">Copyright &copy; 2026 Rapidgest</p>
             </div>
 
             <!-- Legal Links -->
             <nav class="flex flex-wrap justify-center gap-6 text-sm">
                 <a
-                    href="https://rapidgest.com/politica-de-privacidad-de-datos/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/politica-privacidad"
                     class="hover:text-white transition-colors"
-                    >Política de datos</a
+                    >Política de privacidad</a
                 >
                 <a
-                    href="https://rapidgest.com/politica-de-cookies"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/cookies"
                     class="hover:text-white transition-colors">Cookies</a
                 >
                 <a
-                    href="https://rapidgest.com/aviso-legal/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/aviso-legal"
                     class="hover:text-white transition-colors">Aviso legal</a
                 >
             </nav>

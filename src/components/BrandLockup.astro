@@ -1,0 +1,21 @@
+---
+const {
+  href = "/",
+  title = "Fichaje Gratis",
+  imgSrc = "/logo-rapidges-001.png",
+  imgAlt = "Rapidgest",
+  className = "",
+  textClass = "",
+  imgClass = "",
+  invert = false,
+} = Astro.props;
+
+const logoClass = `h-9 ${invert ? "brightness-0 invert" : ""} ${imgClass}`.trim();
+const wrapperClass = `flex items-center gap-3 ${className}`.trim();
+const titleClass = `text-sm font-semibold ${textClass}`.trim();
+---
+
+<a href={href} class={wrapperClass}>
+  <img src={imgSrc} alt={imgAlt} class={logoClass} />
+  <span class={titleClass}>{title}</span>
+</a>
