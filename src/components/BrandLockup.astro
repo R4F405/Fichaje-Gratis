@@ -1,8 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import logoRapidgest from '/public/logo-rapidges-001.png';
+
 const {
   href = "/",
   title = "Fichaje Gratis",
-  imgSrc = "/logo-rapidges-001.png",
+  imgSrc = logoRapidgest,
   imgAlt = "Rapidgest",
   className = "",
   textClass = "",
@@ -16,6 +19,6 @@ const titleClass = `text-sm font-semibold ${textClass}`.trim();
 ---
 
 <a href={href} class={wrapperClass}>
-  <img src={imgSrc} alt={imgAlt} class={logoClass} />
+  <Image src={imgSrc} alt={imgAlt} width={108} height={36} class={logoClass} />
   <span class={titleClass}>{title}</span>
 </a>

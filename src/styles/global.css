@@ -2,8 +2,8 @@
 
 @theme {
   /* Aquí definimos los colores de Rapidgest */
-  --color-brand-blue: #109a9d;
-  --color-brand-blue-hover: #0e8588; /* Un pelín más oscuro para cuando pasas el ratón por el botón */
+  --color-brand-blue: #0d7d80;
+  --color-brand-blue-hover: #0b6a6d; /* Un pelín más oscuro para cuando pasas el ratón por el botón */
   --color-brand-green: #dfdd19;
   --color-brand-dark: #494949;
   --color-brand-light: #cecdcc;

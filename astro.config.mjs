@@ -8,6 +8,9 @@ export default defineConfig({
   server: {
     host: true
   },
+  build: {
+    inlineStylesheets: 'always'
+  },
   vite: {
     plugins: [tailwindcss()]
   }
