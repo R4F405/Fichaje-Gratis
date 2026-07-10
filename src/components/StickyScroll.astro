@@ -7,18 +7,36 @@ const steps = [
   {
     title: "Crea tu espacio de trabajo",
     description: "Configura Rapidgest en minutos. Añade a tus empleados, define los horarios de cada departamento y establece las reglas de fichaje personalizadas para tu empresa.",
+    bullets: [
+      "Crea horarios personalizados.",
+      "Asigna empleados a horarios fácilmente.",
+      "Crea equipos de trabajo.",
+      "Crea ubicaciones para el fichaje.",
+    ],
     variant: "workspace" as const,
     icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
   },
   {
     title: "Fichaje en tiempo real",
     description: "Tus empleados registran su entrada, pausas y salida desde la app móvil o el ordenador. Con opción de geolocalización para saber exactamente desde dónde fichan.",
+    bullets: [
+      "Visualiza la ubicación de fichaje de entrada y salida.",
+      "Cierre automático de jornada ante olvidos.",
+      "Facilidad y simplicidad de uso con un solo clic.",
+      "Accede sin instalar nada en dispositivos personales.",
+    ],
     variant: "fichaje" as const,
     icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
   },
   {
     title: "Informes y control total",
     description: "Olvídate del papeleo a final de mes. Visualiza las horas trabajadas, ausencias y horas extra en tiempo real. Exporta los informes oficiales para la Inspección de Trabajo con un clic.",
+    bullets: [
+      "Tabla de registro de todas las entradas y salidas del personal.",
+      "Cuadros gráficos de empleados dentro o fuera del trabajo.",
+      "Gráfico de horas extra trabajadas.",
+      "Exporta los registros en Excel o PDF fácilmente.",
+    ],
     variant: "informes" as const,
     icon: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
   }
@@ -49,8 +67,20 @@ const steps = [
             </div>
             <h3 class="text-4xl font-bold text-brand-dark mb-5 leading-tight">{step.title}</h3>
             <p class="text-lg text-brand-dark/80 leading-relaxed max-w-md">{step.description}</p>
+            <ul class="mt-7 space-y-3 max-w-md">
+              {step.bullets.map((bullet) => (
+                <li class="flex items-start gap-3">
+                  <span class="ss-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  </span>
+                  <span class="text-base text-brand-dark/85 font-medium">{bullet}</span>
+                </li>
+              ))}
+            </ul>
           </article>
         ))}
+        <!-- Recorrido extra para que el móvil sticky siga centrado en el último paso -->
+        <div class="h-[15vh]" aria-hidden="true"></div>
       </div>
 
       <!-- Móvil fijo (sticky) que cambia de escena -->
@@ -83,7 +113,17 @@ const steps = [
             <span class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-blue">Paso {i + 1}</span>
           </div>
           <h3 class="text-3xl font-bold text-brand-dark mb-3 text-center">{step.title}</h3>
-          <p class="text-base text-brand-dark/80 leading-relaxed text-center max-w-md mx-auto mb-8">{step.description}</p>
+          <p class="text-base text-brand-dark/80 leading-relaxed text-center max-w-md mx-auto mb-6">{step.description}</p>
+          <ul class="space-y-3 max-w-sm mx-auto mb-8">
+            {step.bullets.map((bullet) => (
+              <li class="flex items-start gap-3">
+                <span class="ss-check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                </span>
+                <span class="text-sm text-brand-dark/85 font-medium">{bullet}</span>
+              </li>
+            ))}
+          </ul>
           <div class="relative flex justify-center">
             <div class="absolute -inset-6 bg-gradient-to-br from-brand-blue/12 to-brand-green/10 blur-3xl opacity-60"></div>
             <div class="relative z-10 w-full max-w-[280px]">
@@ -112,6 +152,24 @@ const steps = [
     opacity: 1;
     filter: none;
     transform: none;
+  }
+
+  .ss-check {
+    flex: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-top: 0.1rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: linear-gradient(140deg, var(--color-brand-blue), var(--color-brand-blue-hover));
+    box-shadow: 0 3px 8px -2px color-mix(in srgb, var(--color-brand-blue) 55%, transparent);
+  }
+  .ss-check svg {
+    width: 0.85rem;
+    height: 0.85rem;
   }
 
   .ss-num {
