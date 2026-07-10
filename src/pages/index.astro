@@ -14,11 +14,12 @@ import ERPBanner from "../components/RapidgestBanner.astro";
 import APISection from "../components/APISection.astro";
 
 const heroData = {
-  title: "Fichaje gratis para tu equipo",
+  eyebrow: "Prueba gratis",
+  title: "Fichaje para tu equipo",
   titleHighlight: "sin complicaciones",
   subtitle:
-    "Controla el horario de tus empleados gratis con Rapidgest. Registro de jornada digital, gestión de ausencias y cumplimiento normativo desde cualquier dispositivo. Sin coste, sin compromiso.",
-  ctaText: "Empezar gratis",
+    "Controla el horario de tus empleados con Rapidgest. Registro de jornada digital, gestión de ausencias y cumplimiento normativo desde cualquier dispositivo. Sin coste, sin compromiso.",
+  ctaText: "Empezar ahora",
   ctaLink: "#demo",
   appName: "Rapidgest",
 };
@@ -28,17 +29,17 @@ const heroData = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-isotipo.png" />
 
     <!-- Primary SEO -->
-    <title>Fichaje Gratis | Control Horario Digital Gratuito - Rapidgest</title>
+    <title>Fichaje | Control Horario Digital - Rapidgest</title>
     <meta
       name="description"
-      content="Fichaje gratis para tu empresa. Controla el horario de tu equipo sin complicaciones con Rapidgest. Registro de jornada digital, gestión de ausencias y cumplimiento normativo desde cualquier dispositivo. 100% gratis."
+      content="Fichaje para tu empresa. Controla el horario de tu equipo sin complicaciones con Rapidgest. Registro de jornada digital, gestión de ausencias y cumplimiento normativo desde cualquier dispositivo."
     />
     <meta
       name="keywords"
-      content="fichaje gratis, control horario gratis, fichaje digital, registro jornada laboral, control horario empleados, fichaje empleados gratis, rapidgest, app fichaje, control horario digital, registro horario gratis, fichaje online, gestión horaria, cumplimiento normativo fichaje"
+      content="control horario, fichaje digital, registro jornada laboral, control horario empleados, rapidgest, app fichaje, control horario digital, registro horario, fichaje online, gestión horaria, cumplimiento normativo fichaje"
     />
     <meta name="author" content="Rapidgest - Softtalia" />
     <meta
@@ -52,18 +53,18 @@ const heroData = {
     <meta property="og:url" content="https://fichaje.rapidgest.com/" />
     <meta
       property="og:title"
-      content="Fichaje Gratis | Control Horario Digital sin Coste - Rapidgest"
+      content="Fichaje | Control Horario Digital - Rapidgest"
     />
     <meta
       property="og:description"
-      content="La solución de fichaje digital gratuita de Rapidgest. Registra jornadas, gestiona ausencias y cumple la normativa laboral desde cualquier dispositivo en segundos."
+      content="La solución de fichaje digital de Rapidgest. Registra jornadas, gestiona ausencias y cumple la normativa laboral desde cualquier dispositivo en segundos."
     />
     <meta
       property="og:image"
-      content="https://fichaje.rapidgest.com/logo-rapidges-001.png"
+      content="https://fichaje.rapidgest.com/logo-rapidgest-crop.png"
     />
-    <meta property="og:image:alt" content="Rapidgest - Fichaje Gratis" />
-    <meta property="og:site_name" content="Rapidgest Fichaje Gratis" />
+    <meta property="og:image:alt" content="Rapidgest - Fichaje" />
+    <meta property="og:site_name" content="Rapidgest Fichaje" />
     <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter Card -->
@@ -71,15 +72,15 @@ const heroData = {
     <meta name="twitter:url" content="https://fichaje.rapidgest.com/" />
     <meta
       name="twitter:title"
-      content="Fichaje Gratis | Control Horario Digital - Rapidgest"
+      content="Fichaje | Control Horario Digital - Rapidgest"
     />
     <meta
       name="twitter:description"
-      content="Controla el horario de tu equipo gratis. Registro de jornada digital, gestión de ausencias y cumplimiento normativo desde cualquier dispositivo."
+      content="Controla el horario de tu equipo. Registro de jornada digital, gestión de ausencias y cumplimiento normativo desde cualquier dispositivo."
     />
     <meta
       name="twitter:image"
-      content="https://fichaje.rapidgest.com/logo-rapidges-001.png"
+      content="https://fichaje.rapidgest.com/logo-rapidgest-crop.png"
     />
 
     <!-- Additional SEO -->
@@ -92,22 +93,22 @@ const heroData = {
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "Rapidgest Fichaje Gratis",
+        "name": "Rapidgest Fichaje",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web, iOS, Android",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "EUR",
-          "description": "Fichaje gratis - Control horario digital sin coste"
+          "description": "Control horario digital sin coste"
         },
-        "description": "Solución de fichaje digital gratuita para empresas. Control horario, registro de jornada y gestión de ausencias desde cualquier dispositivo.",
+        "description": "Solución de fichaje digital para empresas. Control horario, registro de jornada y gestión de ausencias desde cualquier dispositivo.",
         "url": "https://fichaje.gratis/",
         "publisher": {
           "@type": "Organization",
           "name": "Rapidgest",
           "url": "https://rapidgest.com/",
-          "logo": "https://fichaje.rapidgest.com/logo-rapidges-001.png",
+          "logo": "https://fichaje.rapidgest.com/logo-rapidgest-crop.png",
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+34-639-06-07-74",
@@ -159,6 +160,12 @@ const heroData = {
       <section
         class="mx-auto w-full max-w-6xl px-4 sm:px-6 pt-20 pb-16 text-center md:pt-36 md:pb-24 relative"
       >
+        <span
+          class="inline-flex items-center gap-2 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-semibold px-4 py-1.5 mb-6"
+        >
+          {heroData.eyebrow}
+        </span>
+
         <h1
           class="text-5xl md:text-7xl font-extrabold tracking-tighter text-slate-900 mb-6 max-w-5xl mx-auto leading-[1.1]"
         >

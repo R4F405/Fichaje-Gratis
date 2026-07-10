@@ -1,50 +1,31 @@
 ---
-import { Image } from 'astro:assets';
+import PhoneMock from './PhoneMock.astro';
 
-// Importar capturas de pantalla
-import imgConfiguracion from '/public/Images/Configuracion horario.png';
-import imgFichar from '/public/Images/Fichar.png';
-import imgPanel from '/public/Images/Panel horario.png';
-
-// Componente de Scroll Dinámico (Sticky Scroll)
+// Scrollytelling: los pasos hacen scroll a un lado, el móvil queda fijo (sticky)
+// al otro y cambia de escena según el paso activo.
 const steps = [
   {
-    title: "1. Crea tu espacio de trabajo",
+    title: "Crea tu espacio de trabajo",
     description: "Configura Rapidgest en minutos. Añade a tus empleados, define los horarios de cada departamento y establece las reglas de fichaje personalizadas para tu empresa.",
-    images: [
-      {
-        src: imgConfiguracion,
-        alt: "Configurar horario"
-      }
-    ],
+    variant: "workspace" as const,
     icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
   },
   {
-    title: "2. Fichaje en tiempo real",
+    title: "Fichaje en tiempo real",
     description: "Tus empleados registran su entrada, pausas y salida desde la app móvil o el ordenador. Con opción de geolocalización para saber exactamente desde dónde fichan.",
-    images: [
-      {
-        src: imgFichar,
-        alt: "Fichar en tiempo real"
-      }
-    ],
+    variant: "fichaje" as const,
     icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
   },
   {
-    title: "3. Informes y control total",
+    title: "Informes y control total",
     description: "Olvídate del papeleo a final de mes. Visualiza las horas trabajadas, ausencias y horas extra en tiempo real. Exporta los informes oficiales para la Inspección de Trabajo con un clic.",
-    images: [
-      {
-        src: imgPanel,
-        alt: "Panel de horario"
-      }
-    ],
+    variant: "informes" as const,
     icon: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
   }
 ];
 ---
 
-<section class="py-24 bg-slate-50 relative overflow-hidden">
+<section class="ss-section relative overflow-x-clip py-24 md:py-28 bg-slate-50" data-scrolly>
   <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_10%_20%,#109a9d1a,transparent_55%),radial-gradient(circle_at_85%_0%,#dfdd1926,transparent_50%)]"></div>
   <div class="container mx-auto px-6 max-w-6xl">
     <div class="text-center mb-16 md:mb-24">
@@ -52,70 +33,62 @@ const steps = [
       <p class="text-xl text-brand-dark/85 max-w-2xl mx-auto">La forma más moderna e intuitiva de gestionar el tiempo de tu equipo.</p>
     </div>
 
-    <div class="space-y-16 md:space-y-24">
-      {steps.map((step, index) => (
-        <div
-          class={`grid items-center gap-10 md:grid-cols-2 ${
-            index % 2 === 1 ? "md:[&>.step-media]:order-first" : ""
-          }`}
-        >
-          <div class="step-content">
+    <!-- ===== Desktop: scrollytelling ===== -->
+    <div class="hidden lg:grid grid-cols-[1fr_minmax(0,420px)] gap-16 xl:gap-24 items-start">
+      <!-- Columna de pasos (scroll) -->
+      <div>
+        {steps.map((step, i) => (
+          <article class:list={["ss-step", { "is-active": i === 0 }]} data-step={i}>
             <div class="flex items-center gap-4 mb-6">
-              <div class="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center text-brand-blue">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="ss-num">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={step.icon}></path>
                 </svg>
               </div>
-              <span class="text-sm font-semibold uppercase tracking-[0.25em] text-brand-blue">Paso {index + 1}</span>
+              <span class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-blue">Paso {i + 1}</span>
             </div>
-            <h3 class="text-3xl font-bold text-brand-dark mb-4">
-              {step.title}
-            </h3>
-            <p class="text-lg text-brand-dark/85 leading-relaxed">
-              {step.description}
-            </p>
+            <h3 class="text-4xl font-bold text-brand-dark mb-5 leading-tight">{step.title}</h3>
+            <p class="text-lg text-brand-dark/80 leading-relaxed max-w-md">{step.description}</p>
+          </article>
+        ))}
+      </div>
+
+      <!-- Móvil fijo (sticky) que cambia de escena -->
+      <div class="self-stretch">
+        <div class="sticky top-0 h-screen flex items-center justify-center">
+          <div class="ss-media relative w-full flex items-center justify-center">
+            <div class="absolute -inset-8 bg-gradient-to-br from-brand-blue/15 to-brand-green/10 blur-3xl opacity-70 ss-glow"></div>
+            {steps.map((step, i) => (
+              <div class:list={["ss-mock", { "is-active": i === 0 }]} data-mock={i}>
+                <div class="w-full max-w-[300px]">
+                  <PhoneMock variant={step.variant} />
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
+      </div>
+    </div>
 
-          <div class="step-media relative">
-            <div class="absolute -inset-6 bg-gradient-to-r from-brand-blue/10 to-brand-green/10 blur-2xl opacity-60"></div>
-
-            {step.images.length > 1 ? (
-              <div class="relative">
-                <div class="relative z-20 aspect-video rounded-3xl overflow-hidden border border-brand-light/50 shadow-2xl bg-white float-slow">
-                  <Image
-                    src={step.images[0].src}
-                    alt={step.images[0].alt}
-                    width={1060}
-                    height={600}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="mt-4 grid grid-cols-2 gap-4 md:mt-0 md:absolute md:-bottom-6 md:-right-6 md:w-2/3 md:grid-cols-1">
-                  <div class="aspect-video rounded-3xl overflow-hidden border border-brand-light/40 shadow-xl bg-white float-fast">
-                    <Image
-                      src={step.images[1].src}
-                      alt={step.images[1].alt}
-                      width={1060}
-                      height={600}
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div class="relative z-10 aspect-video rounded-3xl overflow-hidden border border-brand-light/50 shadow-2xl bg-white float-slow">
-                <Image
-                  src={step.images[0].src}
-                  alt={step.images[0].alt}
-                  width={1060}
-                  height={600}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            )}
+    <!-- ===== Móvil: apilado ===== -->
+    <div class="lg:hidden space-y-20">
+      {steps.map((step, i) => (
+        <div>
+          <div class="flex items-center gap-4 mb-5 justify-center">
+            <div class="ss-num">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={step.icon}></path>
+              </svg>
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-blue">Paso {i + 1}</span>
+          </div>
+          <h3 class="text-3xl font-bold text-brand-dark mb-3 text-center">{step.title}</h3>
+          <p class="text-base text-brand-dark/80 leading-relaxed text-center max-w-md mx-auto mb-8">{step.description}</p>
+          <div class="relative flex justify-center">
+            <div class="absolute -inset-6 bg-gradient-to-br from-brand-blue/12 to-brand-green/10 blur-3xl opacity-60"></div>
+            <div class="relative z-10 w-full max-w-[280px]">
+              <PhoneMock variant={step.variant} />
+            </div>
           </div>
         </div>
       ))}
@@ -124,31 +97,109 @@ const steps = [
 </section>
 
 <style>
-  @keyframes floatSlow {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
+  /* Cada paso ocupa alto suficiente para que el sticky tenga recorrido */
+  .ss-step {
+    min-height: 68vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0.35;
+    filter: saturate(0.8);
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+  }
+  .ss-step.is-active {
+    opacity: 1;
+    filter: none;
+    transform: none;
   }
 
-  @keyframes floatFast {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(8px);
-    }
+  .ss-num {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    color: var(--color-brand-blue);
+    background: color-mix(in srgb, var(--color-brand-blue) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-brand-blue) 20%, transparent);
+    transition: background 0.45s ease, color 0.45s ease, transform 0.45s ease, box-shadow 0.45s ease;
+  }
+  .ss-step.is-active .ss-num {
+    background: linear-gradient(140deg, var(--color-brand-blue), var(--color-brand-blue-hover));
+    color: #fff;
+    transform: scale(1.08);
+    box-shadow: 0 10px 22px -8px color-mix(in srgb, var(--color-brand-blue) 70%, transparent);
   }
 
-  .float-slow {
-    animation: floatSlow 8s ease-in-out infinite;
+  /* Escenas apiladas: solo la activa visible, con cross-fade */
+  .ss-media { min-height: 600px; }
+  .ss-mock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(24px) scale(0.94);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+  .ss-mock.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
   }
 
-  .float-fast {
-    animation: floatFast 6s ease-in-out infinite;
+  @media (prefers-reduced-motion: reduce) {
+    .ss-step { opacity: 1; filter: none; transform: none; }
   }
 </style>
+
+<script>
+  function initScrolly(root: Element) {
+    const steps = Array.from(root.querySelectorAll<HTMLElement>(".ss-step"));
+    const mocks = Array.from(root.querySelectorAll<HTMLElement>(".ss-mock"));
+    if (!steps.length) return;
+
+    let active = -1;
+    function setActive(i: number) {
+      if (i === active) return;
+      active = i;
+      steps.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+      mocks.forEach((m, idx) => m.classList.toggle("is-active", idx === i));
+    }
+
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const mid = window.innerHeight / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      steps.forEach((el, idx) => {
+        const r = el.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        const dist = Math.abs(center - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = idx;
+        }
+      });
+      setActive(best);
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+  }
+
+  document.querySelectorAll("[data-scrolly]").forEach(initScrolly);
+</script>

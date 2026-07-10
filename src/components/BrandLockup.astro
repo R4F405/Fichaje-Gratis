@@ -1,10 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import logoRapidgest from '/public/logo-rapidges-001.png';
+import logoRapidgest from '/public/logo-rapidgest-crop.png';
 
 const {
   href = "/",
-  title = "Fichaje Gratis",
+  title = "Fichaje",
   imgSrc = logoRapidgest,
   imgAlt = "Rapidgest",
   className = "",
@@ -13,12 +13,12 @@ const {
   invert = false,
 } = Astro.props;
 
-const logoClass = `h-9 ${invert ? "brightness-0 invert" : ""} ${imgClass}`.trim();
+const logoClass = `h-11 w-auto ${invert ? "brightness-0 invert" : ""} ${imgClass}`.trim();
 const wrapperClass = `flex items-center gap-3 ${className}`.trim();
 const titleClass = `text-sm font-semibold ${textClass}`.trim();
 ---
 
 <a href={href} class={wrapperClass}>
-  <Image src={imgSrc} alt={imgAlt} width={108} height={36} class={logoClass} />
+  <Image src={imgSrc} alt={imgAlt} width={1338} height={332} class={logoClass} />
   <span class={titleClass}>{title}</span>
 </a>
